@@ -1,0 +1,40 @@
+이승규 이천으로 잘 끄지라
+잘먹고 잘 살아라
+브브
+우리 보고싶다고 밤마다 울지 말고 잘자라 이 쉐이킷아
+바쁘다 바빠 현대 사회
+
+독립선언문 ㅊㅋㅊㅋ
+
+jpa 무한참조 (서로 맵핑 되어있는 곳에서 서로를 호출하는문제)
+해결 방법
+1. @JsonIgnoreProperties({"board"}) -> board 에 으ㅔ해서 호출된 replys에서 다시 board를 가져올때 호출 하지말라 이런뜻
+
+스마트 캐스트 -> 사용자가 원하는 타입으로 캐스팅 하지 않더라도 컴파일러가 자동으로 캐스팅 해주는것
+
+is 키워드 -> 타입 확인과 동시에 자동으로 형변환
+
+제네릭 장점 : 컴파일 타임에 타입에 대한 안정성 보장 ex> 제네릭 타입으로 지정된 변수는 컴파일 시 타입 체크를 한다.
+그래서 런타임시 ClassCastException 과 같은 uncheckedException을 방지 할 수 있다.
+
+제네릭 타입, 로타입 -> 로타입은 제네릭 타입에서 매개변수를 사용x
+
+실체화 불가 타입 -> runtime에 타입정보를 가지고 있지 않고 compile 시 타입 정보를 소거, 실체화 타입 -> runtime에 타입정보 가지고 있음
+
+kotlin 에서 class 생성  -> class Name constructor(name: type) 이런식으로 생성자 사용 (앞에 constructor 생략도 가능)
+but 괄호 안에서 다른 내용은 못 넣는다. 넣고 싶으면 init 을 활용
+
+kotlin 은 생성자 영역이 존재x 따라서 this.변수 = 생성자 매개변수 활용 x
+
+생성자가 여러개 필요한 경우 추후에 알아볼 constructor를 사용할 수도 있지만 파라미터에 default 값을 줘서 필요에 따라 생성하게 할 수도 있다.
+Ex) class Person(val name: String, val age: Int=20, val height: Int=300)
+이렇게 age와 height에 default 값을 주게 되면, name프로퍼티는 필수로 필요하고 age와 height는 선택적으로 주입해 생성할 수 있다.
+val person = Person("conas") ➡️ person = 이름:conas, 나이: 20, 키: 300
+val person = Person("conas", height=150) ➡️ person = 이름:conas, 나이=20, 키=300
+
+주생성자에서 변수 초기화를 안하면 프로퍼티 생성x 지만 val,var로 변수를 초기화 시켜주면 자동으로 프로퍼티 생성
+부생성자 
+
+주 생성자에서는 constructor 을 생략 가능했지만 부생성자에서는 생략 불가능 
+또한 부생성자에서는 constructor 에서 변수 초기화 불가
+부생성자를 사용 할 시 주생성자를 불러와야 한다.
