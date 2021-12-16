@@ -23,41 +23,40 @@
     * 로컬 변수, 멤버변수, 전역변수 모두 타입 추론 지정이 가능.
 
     * Java 10 이전에는 로컬변수 선언 및 할당 시
+    ```java
+    public static void main(String[] args) {
 
-```java
-public static void main(String[] args) {
+        String strVal = "String Type입니다.";
+        System.out.println(strVal);
 
-    String strVal = "String Type입니다.";
-    System.out.println(strVal);
-
-}
-```
+    }
+    ```
 
     * java 10 이후 부터는 ```var``` 라는 키워드를 통해로컬 변수에 대해 타입 추론 선언이 가능하다.(멤버 변수로는 활용 불가능)
     * [JEP 286: Local-Variable Type Inference](http://openjdk.java.net/jeps/286)
-```java
-public class TypeInferenceDemo{
 
-    // 아래와 같은 멤버 변수 선언은 불가능.
-    // var notAllowdVar;
+    ```java
+    public class TypeInferenceDemo{
 
-    public static void main(String[] args) {
+        // 아래와 같은 멤버 변수 선언은 불가능.
+        // var notAllowdVar;
 
-    var strVal = "String Type입니다.";
-    System.out.println(strVal);
+        public static void main(String[] args) {
 
+        var strVal = "String Type입니다.";
+        System.out.println(strVal);
+
+        }
     }
-}
-```
+    ```
 
-```kotlin
-var strVal = "String Type입니다.";
+    ```kotlin
+    var strVal = "String Type입니다.";
 
-fun main() {
-    println(strVal)
-}
-```
-
+    fun main() {
+        println(strVal)
+    }
+    ```
 
 #### 1.1.3 함수형 프로그래밍과 객체 지향 프로그래밍
 
