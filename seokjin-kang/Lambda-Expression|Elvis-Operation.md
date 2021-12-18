@@ -59,3 +59,37 @@ test()
 ```
 
 + run { print("test") } : run 함수는 인자로 받은 람다를 실행해주는 함수이다.
+
+
+
+
+# 엘비스 연산자(Elvis Operation)
+
+엘비스 연산자는 ?:로 표현하며, ?:의 왼쪽 객체가 non-null이면 그객체의 값이 리턴되고, null이라면 ?:의 오른쪽 값을 리턴합니다.
+
+'''
+fun main(args: Array<String>) {
+	val str: String ?= "1234"
+	val nummStr: String ?= null
+
+	var len: Int= if(str != null) str.length else -1
+	println("str.length: $len")
+	
+	len = if(nullStr != null) nullStr.length else -1
+	println("nullStr.length: $len")
+}
+'''
+
+* 메소드에서 null을 리턴하도록 만들 수 있다.
+'''
+fun test(node: Node): String? {
+	val parent = node.getParent() ?: return null
+}
+'''
+
+* Exception이 발생되도록 구현할 수 있다.
+'''
+fun test(node: Node): String? {
+	val name = node.getName() ?: throw Exception("Error")
+}
+'''
