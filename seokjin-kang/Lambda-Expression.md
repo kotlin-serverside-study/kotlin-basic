@@ -57,3 +57,5 @@ var test: () -> Unit = { println("Test Func") }
 test()
 // 결과 Test Func
 ```
+
++ run { print("test") } : run 함수는 인자로 받은 람다를 실행해주는 함수이다.
