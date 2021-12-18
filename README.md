@@ -12,3 +12,4 @@
 > 자유 양식으로 markdown 파일을 각자 디렉토리에 Push
 * [Kotlin 공식 문서](https://kotlinlang.org/docs/home.html)의 **Concept** 기준 "Classes and Object" 까지의 학습 관련 주제
 * ![image](./image/image-01-01.png)
+
