@@ -47,7 +47,7 @@ sum(10, 5, sum)
 
 ```
 var test = func() { println("Test Func") }
-test("test)
+test("test")
 // 결과 Test Func
 ```
 위의 함수를 람다로 다시 작성을 한 경우
