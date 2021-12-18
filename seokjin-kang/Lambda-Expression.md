@@ -18,8 +18,8 @@ val test = {x:Int, y:Int -> x+y}
 val test: (Int, Int) -> Int = {x, y -> x+y}
 ```
 
-람다를 활용하여 만든 고차함수
 ```
+// 람다를 활용하여 만든 고차함수
 func sum(x:Int, y:Int, p: (Int, Int) -> Int) {
 	println("$x, $y -> ${p(x, y)}")
 }
@@ -44,14 +44,14 @@ sum(10, 5, sum)
 // 결과 : 10, 5 -> 15
 ```
 
-반환값이 없는 경우에는 Unit을 사용한다.
+* 반환값이 없는 경우에는 Unit을 사용한다.
 
 ```
 var test = func() { println("Test Func") }
 test("test")
 // 결과 Test Func
 ```
-위의 함수를 람다로 다시 작성을 한 경우
+* 위의 함수를 람다로 다시 작성을 한 경우
 ```
 var test: () -> Unit = { println("Test Func") }
 test()
