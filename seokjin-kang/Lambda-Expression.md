@@ -1,11 +1,12 @@
 람다표현식 (Lambda expression)
-람다는 익명함수로, 익명함수는 함수의 이름이 없는 함수를 말한다. 보통 한번 사용되고 재사용되지 않는 함수를 만들때 익명함수로 만든다.
+람다는 익명함수로, 익명함수는 함수의 이름이 없는 함수를 말한다. 보통 한번 사용되고 재사용되지 않는 함수를 만들때 익명함수로 만든다. 
 코틀린 람다식은 항상 중괄호로 감싼다.
 인자는 ()로 감싸지 않는다.
 인자와 본문은 ->로 구분한다.
 (파라미터 -> 자료형)
 (Unit : 값이 없다.)
 
+```
 // 전체 표현
 val test: (Int, Int) -> Int = {x:Int, y:Int -> x + y}
 
@@ -14,8 +15,10 @@ val test = {x:Int, y:Int -> x+y}
 
 //람다 매개변수 자료형의 생략
 val test: (Int, Int) -> Int = {x, y -> x+y}
-람다를 활용하여 만든 고차함수
+```
 
+람다를 활용하여 만든 고차함수
+```
 func sum(x:Int, y:Int, p: (Int, Int) -> Int) {
 	println("$x, $y -> ${p(x, y)}")
 }
@@ -38,13 +41,18 @@ val sum : (Int, Int) -> Int = {x:Int, y:Int -> x + y}
 sum(10, 5, sum)
 
 // 결과 : 10, 5 -> 15
+```
+
 반환값이 없는 경우에는 Unit을 사용한다.
 
+```
 var test = func() { println("Test Func") }
 test("test)
 // 결과 Test Func
+```
 위의 함수를 람다로 다시 작성을 한 경우
-
+```
 var test: () -> Unit = { println("Test Func") }
 test()
 // 결과 Test Func
+```
