@@ -86,3 +86,6 @@ if (value is String)
 #### 1.2.4 상호운용성
 * JVM 베이스에서 Java와의 100% 호환성
 * 다중 언어를 지원하면서 자바의 라이브러리를 활용을 할 수 있는 이점이 있음
+
+### 1.2 코틀린 빌드 과정
+![](https://media.vlpt.us/images/dbsdlswp/post/e78bc926-63b5-4d35-b842-3b542ae3e493/image.png)
