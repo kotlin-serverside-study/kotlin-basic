@@ -165,6 +165,90 @@ public final class KotlinStandardLibrary {
 }
 
 ```
+
+* Nullable한 참조 타입에 ```?.``` 연산자와 let을 조합해서 사용한다면
+```kotlin
+object KotlinStandardLibrary {
+    @JvmStatic
+    fun main(arg: Array<String>) {
+        var person: PersonEntity? = createPerson()
+        person?.let {
+            it.age = 10
+            it.name = "jay"
+        }
+
+        println(person)
+    }
+}
+
+fun createPerson() : PersonEntity? {
+    return PersonEntity()
+}
+```
+
+```java
+// KotlinStandardLibraryKt.java
+package week2;
+
+import kotlin.Metadata;
+import org.jetbrains.annotations.Nullable;
+
+@Metadata(
+   mv = {1, 5, 1},
+   k = 2,
+   d1 = {"\u0000\b\n\u0000\n\u0002\u0018\u0002\n\u0000\u001a\b\u0010\u0000\u001a\u0004\u0018\u00010\u0001¨\u0006\u0002"},
+   d2 = {"createPerson", "Lweek2/PersonEntity;", "kotlin-demo-app"}
+)
+public final class KotlinStandardLibraryKt {
+   @Nullable
+   public static final PersonEntity createPerson() {
+      return new PersonEntity();
+   }
+}
+// KotlinStandardLibrary.java
+package week2;
+
+import kotlin.Metadata;
+import kotlin.jvm.JvmStatic;
+import kotlin.jvm.internal.Intrinsics;
+import org.jetbrains.annotations.NotNull;
+
+@Metadata(
+   mv = {1, 5, 1},
+   k = 1,
+   d1 = {"\u0000\u001e\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0010\u0011\n\u0002\u0010\u000e\n\u0002\b\u0002\bÆ\u0002\u0018\u00002\u00020\u0001B\u0007\b\u0002¢\u0006\u0002\u0010\u0002J\u001b\u0010\u0003\u001a\u00020\u00042\f\u0010\u0005\u001a\b\u0012\u0004\u0012\u00020\u00070\u0006H\u0007¢\u0006\u0002\u0010\b¨\u0006\t"},
+   d2 = {"Lweek2/KotlinStandardLibrary;", "", "()V", "main", "", "arg", "", "", "([Ljava/lang/String;)V", "kotlin-demo-app"}
+)
+public final class KotlinStandardLibrary {
+   @NotNull
+   public static final KotlinStandardLibrary INSTANCE;
+
+   @JvmStatic
+   public static final void main(@NotNull String[] arg) {
+      Intrinsics.checkNotNullParameter(arg, "arg");
+      PersonEntity person = KotlinStandardLibraryKt.createPerson();
+      if (person != null) {
+         boolean var3 = false;
+         boolean var4 = false;
+         int var6 = false;
+         person.setAge(10);
+         person.setName("jay");
+      }
+
+      boolean var2 = false;
+      System.out.println(person);
+   }
+
+   private KotlinStandardLibrary() {
+   }
+
+   static {
+      KotlinStandardLibrary var0 = new KotlinStandardLibrary();
+      INSTANCE = var0;
+   }
+}
+
+```
 ### with
 
 ```Kotlin
