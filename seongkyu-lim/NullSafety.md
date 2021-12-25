@@ -29,7 +29,7 @@ b = null // ok
 만약 nullable한 property에 대해 메소드를 사용하려는 경우 error를 냅니다.
 
 ```kotlin
-**val** l = a.length
+val l = a.length
 
 val l = b.length // error: variable 'b' can be null
 ```
@@ -39,7 +39,7 @@ nullable한 property에 대해서도 접근이 필요한 경우에는 몇가지 
 첫번째 방법으로 condition구문을 통해 null check를 함으로써 실행이 가능합니다. 다만 nullable property가 mutable한 경우 check후에 null이 될 수도 있으므로 반드시 immutable해야 합니다.
 
 ```kotlin
-**val** l = **if** (b != **null**) b.length **else** -1
+val l = if (b != null) b.length else -1
 ```
 
 두번째방법으로 safe call operator인 **?.**을 사용하는 것입니다.
@@ -71,7 +71,7 @@ item?.let { println(it) } // prints Kotlin and ignores null
 nullable한 property에 대해서 접근이 필요할 경우 조건문이나 safe call operator를 이용하여 null을 체크하여 실행을 시킬 수 있었습니다. 다만 safe call operator를 이용할 경우 null일 경우에는 null을 반환하였지만, Elvis Operator를 이용할 경우 조건문을 이용하는 것과 같이 null일 경우에는 다른 nonnull값을 반환할 수 있도록 할 수 있습니다. 
 
 ```kotlin
-**val** l = b?.length ?: -1
+val l = b?.length ?: -1
 ```
 
 ---
@@ -81,7 +81,7 @@ nullable한 property에 대해서 접근이 필요할 경우 조건문이나 saf
 for NPE-lovers.
 
 ```kotlin
-**val** l = b!!.length
+val l = b!!.length
 ```
 
 b가 Null일 경우에도 실행되어 NPE 반환.
@@ -93,7 +93,7 @@ b가 Null일 경우에도 실행되어 NPE 반환.
 일반적으로 casts 시에 object가 target type이 아닌 경우 ClassCastException를 발생 시킵니다. 이를 방지하기 위해 아래와 같이 적용을 하면 ClassCastException을 일으키는 대신 null을 반환합니다.
 
 ```kotlin
-**val** aInt: Int? = a **as**? Int
+val aInt: Int? = a as? Int
 ```
 
 ---
