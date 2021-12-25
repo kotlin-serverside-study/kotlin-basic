@@ -2,7 +2,22 @@
 
 코틀린 표준 라이브러리에는 객체 컨텍스트 안에서 코드 블록을 실행할 목적으로 만든 다수의 함수가 포함되어 있다. 
 
+### 들어가기 전에..
 
+> ### 람다 표현식(lambda expression)
+> 코틀린에서는 함수리터럴(function literals) 또는 익명의 함수로 정리가 가능합니다.
+>>Lambda expressions and anonymous functions are function literals. Function literals are functions that are not declared but are passed immediately as an expression. Consider the following example:
+> https://kotlinlang.org/docs/lambdas.html
+> 
+> 자바(Java)에서의 람다 표현식의 정의와 그 뉘앙스가 코틀린과는 살짝 다릅니다.
+> 이는 표현식의 모양은 비슷하지만 그 기반에 깔린 언어의 구조적인 차이가 있기에 한번 쯤 참고해보면 좋을 듯 합니다.
+>
+> https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
+
+
+> ### 람다 리시버(lambda with receiver)
+> 확장함수 + 람다 
+>>Function types can optionally have an additional receiver type, which is specified before the dot in the notation: the type A.(B) -> C represents functions that can be called on a receiver object A with a parameter B and return a value C. Function literals with receiver are often used along with these types.
 ### apply
 
 * ```apply``` 함수는 this를 인자로 전달하고 this를 리턴하는 확장 함수이다.
