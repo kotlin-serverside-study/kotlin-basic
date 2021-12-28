@@ -9,6 +9,7 @@ Kotlin에서는 상속과 decorator 패턴을 사용하지 않고도 새로운 �
 `
 
 //Kotlin code
+
 fun MutableList<Int>.swap(index1: Int, index2: Int) {
     
     val tmp = this[index1] // 'this' corresponds to the list
