@@ -7,18 +7,25 @@ Kotlin에서는 상속과 decorator 패턴을 사용하지 않고도 새로운 �
 또한 원래의 클래스의 메소드 처럼 일반적으로 호출 할 수 있다.
 
 `
+
 //Kotlin code
 fun MutableList<Int>.swap(index1: Int, index2: Int) {
+    
     val tmp = this[index1] // 'this' corresponds to the list
+    
     this[index1] = this[index2]
+    
     this[index2] = tmp
 }
 
 val list = mutableListOf(1, 2, 3)
+
 list.swap(0, 2) // 'this' inside 'swap()' will hold the value of 'list'
 
 ---------------------------------------------------------------
+
 //Java code
+
 
 `
 
@@ -30,8 +37,11 @@ list를 선언한뒤 바로 swap이라는 함수를 사용 할 수 있다.
 
 `
 fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
+    
     val tmp = this[index1] // 'this' corresponds to the list
+    
     this[index1] = this[index2]
+    
     this[index2] = tmp
 }
 `
@@ -43,12 +53,15 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
 
 `
 open class Shape
+
 class Rectangle: Shape()
 
 fun Shape.getName() = "Shape"
+
 fun Rectangle.getName() = "Rectangle"
 
 fun printClassName(s: Shape) {
+    
     println(s.getName())
 }
 
@@ -60,6 +73,7 @@ printClassName(Rectangle())
 
 `
 class Example {
+    
     fun printFunctionType() { println("Class method") }
 }
 
@@ -102,8 +116,11 @@ copy() function
 
 이런 함수들이 컴파일시 자동으로 생성된다. 자동으로 함수를 생성하지 않으려면 생성자를 만들지 말고 멤버로 선언하면 된다.
 `
+
 data class Person(val name: String) {
+    
     var age: Int = 0
+
 }
 `
 또한 data class를 작성시 유의사항이 있다.
@@ -119,16 +136,23 @@ data class Person(val name: String) {
 좀더 이해를 돕기위한 예:
 `
 abstract class CarAction
+
 class Go: CarAction()
+
 class Stop: CarAction()
+
 class back: CarAction()
 
 fun main() {
     
     fun getCarAction(ca: CarAction): String{
+        
         return when(ca){
+            
             is Go -> "GO"
+            
             is Stop -> "Stop"
+            
             is Back -> "Back"
         }
     }
@@ -140,6 +164,7 @@ fun main() {
 // when' expression must be exhaustive, add necessary 'else' branch 이라는 error를 발생한다.
 // else를 추가하면 error는 사라지지만 Go,Stop,Back 클래스중 하나가 없이 작성되어도 정상작동한다.
 // 따라서 실제 상용하될 코드라면 위험 할 수 있다.
+
 `
 이러한 문제점을 해결하기 위해서 Sealed class 가 등장했다. enum과 비슷한 역할
 
