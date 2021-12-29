@@ -173,6 +173,105 @@ sealed class 를 상속받는 자식 클래스들이 멤버가 없는 경우라�
 
 같은 패키지 내에서만 상속할 수 있고 sealed class는 본인 스스로 인스턴스화 시킬수 없다.
 
+##Generic
+
+제네릭 타입을 사용하면 컴파일시 잘못된 타입을 체크 할 수 있다. 또한 타입을 외부에서 주입시켜 주기 때문에 타입변환 필요 없다.
+
+java 에서 제네릭 타입을 사용하면 
+
+
+`class A<T>{
+}
+public class Main{
+    public static void main(String[] args){
+        A<String> a = new A<>();
+        
+    }
+
+}`
+
+
+이런식으로 사용하면 원하는 타입만 외부에서 주입해서 사용하면 되므로 재사용성이 높아진다.
+
+
+`
+List<String> strs = new ArrayList<String>();
+List<Object> objs = strs; // !!! 여기서 컴파일 에러가 발생
+objs.add(1); // 만약 에러가 나지 않아서 1을 집어 넣게 된다면
+String s = strs.get(0); // !!! ClassCastException 런타임 에러 발생
+
+`
+
+여기에서 String는 Object를 상속받지만 List<String>는 List<Object>를 상속받지 않는다.
+
+이렇게 형식 인자들끼리는 sub type 관계를 만족하더라도 제네릭을 사용하는 클래스와 인터페이스에서는 sub type 관계가 유지되지 않는 것이 Invariance(불변)이다.
+    
+그래서 이런 문제를 해결하기 위해서 자바에서는 wildcard가 있다.
+    
+`
+interface Collection<E> ... {
+  void addAll(Collection<? extends E> items);
+}    
+    
+`
+<? extends E>, <? super E> 이런식으로 작성해서 해결 가능하다.
+
+위에서와 같이 items는 E일수도 E의 Subtype 일수도 있는 item들이 들어있다. 그래서 item을 읽으면 모두 E라는 형식에 담을 수 있다.
+
+그러나 items에 값을 인서트 하지 못한다. 왜냐하면 ?가 어떤 타입인지 모르게 때문에 
+
+읽기만 가능하고 쓰기는 불가능한 ? extends E 는 코틀린에서의 out과 비슷한 의미로 사용되고 이런 것들을 covariance(공변) 라 부릅니다.
+
+반대로 읽기는 불가능하고 쓰기만 가능한 자바에선 ? super E 로 사용되고 코틀린에선 in 으로 사용되는 contravariance(반변)이 있습니다.
+
+contravariance(반변)에서는 E와 같거나 E보다 상위의 타입만 ? 자리에 들어올 수 있습니다. 
+
+items이 Collection<? super E> 라면, items에서 어떤 변수를 꺼내도 E에 담을 수 있을 지 보장할 수 없다. 큰타입을 작은타입으로 담을 수 없기 때문이다.
+
+하지만 반대로 인서트는 가능하다. 
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+기본적으로 코틀린의 모든 제네릭에서의 형식 인자는 Invariance이다.
+
+
+
+
+    
+    
+    
+    
+   
+
+
+
+
+
 
 
 
