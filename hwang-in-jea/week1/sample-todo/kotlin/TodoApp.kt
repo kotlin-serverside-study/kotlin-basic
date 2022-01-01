@@ -1,30 +1,37 @@
 package todo
 
+/**
+ * TodoAppMain.kt
+ * */
+
+
 import java.time.LocalDateTime
 import kotlin.system.exitProcess
 
+// private 키워드로 클래스 밖에 선언된 프로퍼티는
+// TodoMain.kt 파일 안에서만 유효합니다.
 private val introBanner = """
-   =========================
-       초간단 To-Do List
-   =========================
+|=====================================
+   초간단 To-Do List
+|=====================================
 """
 
+// 앞에 키워드가 없다면 아래 menuDisplay 변수는 public 합니다.
 val menuDisplay = """
-    
-    ====================================
-    ******* 메뉴를 입력하세요 *********
-    ====================================
-    [1] Todo List 조회
-    [2] Todo 등록
-    [3] Todo 수정
-    [4] Todo 삭제
-    [5] 종료
-    
+|=====================================
+|******* 메뉴를 입력하세요 ********     
+|=====================================
+|[1] Todo List 조회
+|[2] Todo 등록
+|[3] Todo 수정
+|[4] Todo 삭제
+|[5] 종료
+|====================================
 """
 
 fun main(args: Array<String>) {
 
-    var mutableTodoList = mutableListOf<Todo>()
+    var mutableTodoList = TestDataCreator.createTestTodoList()
 
     println(introBanner)
     while (true) {
@@ -69,6 +76,7 @@ fun main(args: Array<String>) {
     }
 }
 
+// 등록 처리
 fun insertNewTodoProcess(todoList: MutableList<Todo>) {
     print("할일 제목을 입력하세요 : ")
     val inputTitle = readLine() ?: ""
@@ -117,8 +125,58 @@ fun deleteTodoProcess(todoList: MutableList<Todo>) {
         this.toInt()
     } ?: throw IllegalArgumentException("입력된 값이 적절하지 않습니다.")
 
-    todoList.removeAt(deleteId)
+    todoList.removeTodoItem(deleteId)
 }
+
+// 삭제에 대한 확장 함수
+fun MutableList<Todo>.removeTodoItem(deleteId: Int) = run {
+    this.removeAt(deleteId)
+    // 중간에 Element가 빠지면 List 뒤에 있는 요소들의 id 번호를 앞으로 땡겨와야 합니다.
+    this.forEachIndexed { index, todo ->
+        if (todo.id != index.toLong()) {
+            this[index] = todo.copy(id = index.toLong())
+        }
+    }
+}
+
+/**
+ * TodoDataCreator.kt
+ * */
+
+internal class TestDataCreator {
+    companion object{
+        fun createTestTodoList(): MutableList<Todo> = mutableListOf(
+            Todo.newTodo(
+                0L,
+                "Todo Item 1",
+                "Study Java",
+                LocalDateTime.now().plusDays(2)
+            ),
+            Todo.newTodo(
+                1L,
+                "Todo Item 2",
+                "Study OS",
+                LocalDateTime.now().plusDays(1)
+            ),
+            Todo.newTodo(
+                2L,
+                "Todo Item 3",
+                "Study Kotlin",
+                LocalDateTime.now().plusDays(2)
+            ),
+            Todo.newTodo(
+                3L,
+                "Todo Item 4",
+                "Study Spring",
+                LocalDateTime.now().plusDays(2)
+            ),
+        )
+    }
+}
+
+/**
+ * Todo.kt
+ * */
 
 
 data class Todo(
@@ -152,3 +210,4 @@ fun Todo.toStringForTodo(): String = """
     * dueDate : ${this.dueDate}
     ------------------------------------
 """.trimIndent()
+
