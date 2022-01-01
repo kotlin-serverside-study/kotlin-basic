@@ -1,0 +1,1 @@
+- [Sealed class](https://www.notion.so/neverlish/kotlin-sealed-class-b92f9b4d52264f8a89825156eefb4a75)
